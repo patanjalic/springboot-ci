@@ -8,3 +8,4 @@ usage
 java -jar target/<jar> --server.port=<port>
 jenkins ci
 jenkins ci
+jenkins ci
