@@ -13,7 +13,7 @@ pipeline {
       }
       stage('Deploy in test') {
          when {
-                branch 'develop'
+            branch 'develop'
          }
          steps {
             script {
@@ -29,9 +29,10 @@ pipeline {
                }  
             }
          }
-      }stage('Deploy in Prod') {
+      }
+      stage('Deploy in Prod') {
          when {
-                branch 'release'
+            branch 'release'
          }
          steps {
             script {
