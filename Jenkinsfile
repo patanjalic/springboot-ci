@@ -15,15 +15,15 @@ pipeline {
          steps {
             script {
                if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
-                  timeout(time: 30, unit: 'SECONDS') {
+                  //timeout(time: 30, unit: 'SECONDS') {
                       // you can use the commented line if u have specific user group who CAN ONLY approve
                       //input message:'Approve deployment?', submitter: 'it-ops'
-                      input message: 'Approve deployment?'
-                  }
-               }
-               echo "proceeded to next step"
-               sh 'cp target/*.jar /c/springboot/deployments'
-               sh 'java -jar /c/springboot/deployments/*.jar'
+                      //input message: 'Approve deployment?'
+                  //}
+                  echo "proceeded to next step"
+                  sh 'cp target/*.jar /c/springboot/deployments'
+                  sh 'java -jar /c/springboot/deployments/*.jar'
+               }  
             }
          }
       }
