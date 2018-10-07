@@ -22,7 +22,7 @@ pipeline {
                   //}
                   echo "proceeded to next step"
                   sh 'cp target/*.jar /c/springboot/deployments'
-                  sh 'java -jar /c/springboot/deployments/*.jar'
+                  sh 'nohup java -jar /c/springboot/deployments/*.jar &'
                }  
             }
          }
