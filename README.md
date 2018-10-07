@@ -6,3 +6,4 @@ usage
 
 ./mvnw clean install
 java -jar target/<jar> --server.port=<port>
+jenkins ci
