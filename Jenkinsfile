@@ -11,7 +11,10 @@ pipeline {
             sh 'mvn -f pom.xml -Dmaven.test.failure.ignore clean package'
          }
       }
-      stage('Deploy') {
+      stage('Deploy in test') {
+         when {
+                branch 'develop'
+         }
          steps {
             script {
                if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
@@ -20,7 +23,25 @@ pipeline {
                       //input message:'Approve deployment?', submitter: 'it-ops'
                       //input message: 'Approve deployment?'
                   //}
-                  echo "proceeded to next step"
+                  echo "proceeded to next step deploy in test"
+                  sh 'cp target/*.jar /c/springboot/deployments'
+                  sh 'nohup java -jar /c/springboot/deployments/*.jar &'
+               }  
+            }
+         }
+      }stage('Deploy in Prod') {
+         when {
+                branch 'release'
+         }
+         steps {
+            script {
+               if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
+                  //timeout(time: 30, unit: 'SECONDS') {
+                      // you can use the commented line if u have specific user group who CAN ONLY approve
+                      //input message:'Approve deployment?', submitter: 'it-ops'
+                      //input message: 'Approve deployment?'
+                  //}
+                  echo "proceeded to next step deploy in prod"
                   sh 'cp target/*.jar /c/springboot/deployments'
                   sh 'nohup java -jar /c/springboot/deployments/*.jar &'
                }  
