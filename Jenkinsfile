@@ -8,7 +8,7 @@ pipeline {
       stage('Build') {
          steps {
             // Run the maven build
-            bat(/mvn -f streams\/pom.xml -Dmaven.test.failure.ignore clean package/)
+            bat(/mvn -f pom.xml -Dmaven.test.failure.ignore clean package/)
          }
       }
       stage('Deploy') {
