@@ -22,8 +22,8 @@ pipeline {
                   }
                }
                echo "proceeded to next step"
-               sh 'scp target/*.jar localhost:/c/springboot/deployments'
-               sh 'ssh localhost java -jar /c/springboot/deployments/*.jar'
+               sh 'cp target/*.jar /c/springboot/deployments'
+               sh 'java -jar /c/springboot/deployments/*.jar'
             }
          }
       }
